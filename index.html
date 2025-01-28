@@ -1,98 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Escape</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <button id="languageToggle" class="language-toggle" aria-label="Toggle Language Selection">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
-            <path d="M3.6 9h16.8"></path>
-            <path d="M3.6 15h16.8"></path>
-            <path d="M12 3a15 15 0 0 1 0 18"></path>
-            <path d="M12 3a15 15 0 0 0 0 18"></path>
-        </svg>
-    </button>
+// Indian Languages
+const languages = {
+    'hi': 'Hindi',
+    'bn': 'Bengali',
+    'te': 'Telugu',
+    'mr': 'Marathi',
+    'ta': 'Tamil',
+    'ur': 'Urdu',
+    'gu': 'Gujarati',
+    'kn': 'Kannada',
+    'ml': 'Malayalam',
+    'pa': 'Punjabi',
+    'or': 'Odia',
+    'as': 'Assamese',
+    'sd': 'Sindhi',
+    'sa': 'Sanskrit'
+};
 
-    <div id="languagePanel" class="language-selector hidden">
-        <div class="language-search">
-            <input type="text" id="languageSearch" placeholder="Search a language...">
-            <select id="languageList">
-                <option value="">Select a Language</option>
-            </select>
-            <button id="translateButton">Translate</button>
-        </div>
-        <div class="translate-instruction">
-            <span class="instruction-text">👉 Click the Google icon to complete translation</span>
-        </div>
-        <div id="google_translate_element"></div>
-    </div>
+// Initialize translation elements
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('languageSearch');
+    const languageList = document.getElementById('languageList');
+    const translateButton = document.getElementById('translateButton');
+    const languageToggle = document.getElementById('languageToggle');
+    const languagePanel = document.getElementById('languagePanel');
+    
+    // Toggle language panel
+    languageToggle.addEventListener('click', function() {
+        languagePanel.classList.toggle('hidden');
+        languageToggle.classList.toggle('active');
+    });
 
-    <header class="hero">
-        <div class="container">
-            <h1 class="title">Help Me Move On</h1>
-            <p class="subtitle">Your support can truly change my life. Help me escape a difficult situation.</p>
-            <p class="appeal">Every little bit helps. Together, we can make my future brighter.</p>
-        </div>
-    </header>
+    // Close panel when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInside = languagePanel.contains(event.target) || languageToggle.contains(event.target);
+        if (!isClickInside && !languagePanel.classList.contains('hidden')) {
+            languagePanel.classList.add('hidden');
+            languageToggle.classList.remove('active');
+        }
+    });
+    
+    // Populate language list
+    for (let code in languages) {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = languages[code];
+        languageList.appendChild(option);
+    }
 
-    <main>
-        <section class="donation-section">
-            <div class="container">
-                <h2 class="donate-title">Support My Journey</h2>
-                <p class="description">Your donation will help me with:</p>
-                <ul class="donation-uses">
-                    <li>Find a safe place to stay</li>
-                    <li>Get mental health support</li>
-                    <li>Cover living expenses</li>
-                    <li>Build a better life</li>
-                </ul>
-                
-                <div class="payment-methods">
-                    <div class="qr-container">
-                        <h3>Donate via FamPay</h3>
-                        <img src="fampay-qr.png" alt="FamPay QR Code" class="qr-code">
-                        <p class="qr-instruction">Scan this QR code to donate via FamPay</p>
-                    </div>
+    // Search functionality
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const options = languageList.options;
 
-                    <div class="upi-container">
-                        <h3>Donate via UPI</h3>
-                        <a href="upi://pay?pa=choosyishant@fam&pn=choosy" class="donate-button">
-                            Pay with UPI
-                        </a>
-                        <p class="upi-instruction">Click to open your UPI app and donate</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        for (let i = 0; i < options.length; i++) {
+            const optionText = options[i].text.toLowerCase();
+            const optionValue = options[i].value.toLowerCase();
+            const shouldShow = optionText.includes(searchTerm) || optionValue.includes(searchTerm);
+            options[i].style.display = shouldShow ? '' : 'none';
+        }
+    });
 
-        <section class="story-section">
-            <div class="container">
-                <h2>Why I Need Help</h2>
-                <div class="story-content">
-                    <p>I was born in 2007. For many years, my life has been very hard. My mom has been emotionally abusive, saying things that hurt me deeply. My dad works long hours and is rarely around. This has made it very hard to feel safe and happy at home.</p>
-                    
-                    <p>Because of all this stress, I dropped out of school after 10th grade. I couldn’t focus on anything other than just getting through each day. Now, at 17, I feel stuck. I can’t leave because I have no money or resources, and there’s no one to help me. Sometimes, I feel like giving up. But I don’t want to, and I want to change my life. That’s why I need your support.</p>
-                    
-                    <p>Any donation will help me get a safe place to stay, get the help I need, and start over. Please, help me take the first step toward a better future.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+    // Translation functionality
+    translateButton.addEventListener('click', function() {
+        const selectedLang = languageList.value;
+        if (!selectedLang) return;
 
-    <footer>
-        <div class="container">
-            <p class="disclaimer">All donations are voluntary and will be used only for the purposes stated above.</p>
-            <p class="contact">For any questions, please contact: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-            <p class="copyright">&copy; 2025 Help Me Move On</p>
-        </div>
-    </footer>
+        // Add Google Translate script if not already added
+        if (!document.querySelector('script[src*="translate.google.com"]')) {
+            const script = document.createElement('script');
+            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(script);
+        }
 
-    <script src="script.js"></script>
-</body>
-</html>
+        // Initialize Google Translate
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: selectedLang,
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        };
+
+        // Trigger translation
+        if (window.googleTranslateElementInit) {
+            window.googleTranslateElementInit();
+        }
+    });
+});
