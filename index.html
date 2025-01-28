@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Escape</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#4a90e2">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button id="languageToggle" class="language-toggle" aria-label="Toggle Language Selection">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+            <path d="M3.6 9h16.8"></path>
+            <path d="M3.6 15h16.8"></path>
+            <path d="M12 3a15 15 0 0 1 0 18"></path>
+            <path d="M12 3a15 15 0 0 0 0 18"></path>
+        </svg>
+    </button>
+
+    <div id="languagePanel" class="language-selector hidden">
+        <div class="language-search">
+            <input type="text" id="languageSearch" placeholder="Search a language...">
+            <select id="languageList">
+                <option value="">Select a Language</option>
+            </select>
+            <button id="translateButton">Translate</button>
+        </div>
+        <div class="translate-instruction">
+            <span class="instruction-text">👉 Click the Google icon to complete translation</span>
+        </div>
+        <div id="google_translate_element"></div>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="title">Help Me Move On</h1>
+            <p class="subtitle">Your support can truly change my life. Help me escape a difficult situation.</p>
+            <p class="appeal">Every little bit helps. Together, we can make my future brighter.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="donation-section">
+            <div class="container">
+                <h2 class="donate-title">Support My Journey</h2>
+                <p class="description">Your donation will help me with:</p>
+                <ul class="donation-uses">
+                    <li>Find a safe place to stay</li>
+                    <li>Get mental health support</li>
+                    <li>Cover living expenses</li>
+                    <li>Build a better life</li>
+                </ul>
+                
+                <div class="payment-methods">
+                    <div class="qr-container">
+                        <h3>Donate via FamPay</h3>
+                        <img src="fampay-qr.png" alt="FamPay QR Code" class="qr-code">
+                        <p class="qr-instruction">Scan this QR code to donate via FamPay</p>
+                    </div>
+
+                    <div class="upi-container">
+                        <h3>Donate via UPI</h3>
+                        <a href="upi://pay?pa=choosyishant@fam&pn=choosy" class="donate-button">
+                            Pay with UPI
+                        </a>
+                        <p class="upi-instruction">Click to open your UPI app and donate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section">
+            <div class="container">
+                <h2>Why I Need Help</h2>
+                <div class="story-content">
+                    <p>I was born in 2007. For many years, my life has been very hard. My mom has been emotionally abusive, saying things that hurt me deeply. My dad works long hours and is rarely around. This has made it very hard to feel safe and happy at home.</p>
+                    
+                    <p>Because of all this stress, I dropped out of school after 10th grade. I couldn’t focus on anything other than just getting through each day. Now, at 17, I feel stuck. I can’t leave because I have no money or resources, and there’s no one to help me. Sometimes, I feel like giving up. But I don’t want to, and I want to change my life. That’s why I need your support.</p>
+                    
+                    <p>Any donation will help me get a safe place to stay, get the help I need, and start over. Please, help me take the first step toward a better future.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="disclaimer">All donations are voluntary and will be used only for the purposes stated above.</p>
+            <p class="contact">For any questions, please contact: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+            <p class="copyright">&copy; 2025 Help Me Move On</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

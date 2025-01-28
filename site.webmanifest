@@ -1,0 +1,21 @@
+{
+    "name": "Escape - Help Me Move On",
+    "short_name": "Escape",
+    "icons": [
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#4a90e2",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/"
+}
